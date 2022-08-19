@@ -1,0 +1,22 @@
+package pl.ug.ug_ci.ConverterController;
+
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import pl.ug.ug_ci.ConverterDto.ConverterDto;
+import pl.ug.ug_ci.ConverterService.ConverterService;
+
+@RestController
+public class ConverterController {
+
+    final ConverterService converterService;
+
+    public ConverterController(ConverterService converterService) {
+        this.converterService = converterService;
+    }
+
+    @GetMapping
+    public ConverterDto getUSD(){
+        return converterService.getUSD();
+    }
+}

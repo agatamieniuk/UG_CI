@@ -1,6 +1,9 @@
 package pl.ug.ug_ci.webclient.converter.dto;
 
-public class Rates {
+import lombok.Getter;
+
+@Getter
+public class NBPConverterRatesDto {
     private String effectiveDate;
     private Double mid;
 }

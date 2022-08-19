@@ -1,10 +1,11 @@
 package pl.ug.ug_ci.ConverterController;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.ug.ug_ci.ConverterDto.ConverterDto;
 import pl.ug.ug_ci.ConverterService.ConverterService;
+import pl.ug.ug_ci.webclient.converter.dto.NBPConverterDto;
 
 @RestController
 public class ConverterController {
@@ -16,7 +17,7 @@ public class ConverterController {
     }
 
     @GetMapping
-    public ConverterDto getUSD(){
+    public NBPConverterDto getUSD() throws JsonProcessingException {
         return converterService.getUSD();
     }
 }

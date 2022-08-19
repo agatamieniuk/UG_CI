@@ -1,21 +1,18 @@
 package pl.ug.ug_ci.ConverterService;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.ug.ug_ci.ConverterDto.ConverterDto;
 import pl.ug.ug_ci.webclient.converter.ConverterClient;
+import pl.ug.ug_ci.webclient.converter.dto.NBPConverterDto;
 
 @Service
+@RequiredArgsConstructor
 public class ConverterService {
 
     private final ConverterClient converterClient;
 
-    public ConverterService(ConverterClient converterClient) {
-        this.converterClient = converterClient;
+    public NBPConverterDto getUSD() {
+        return converterClient.getDateforConvertion("2022-06-02");
     }
 
-    public ConverterDto getUSD(){
-        String response = converterClient.getDateOfUSDConvertion("2022-06-02");
-        System.out.println(response);
-        return null;
-    }
 }

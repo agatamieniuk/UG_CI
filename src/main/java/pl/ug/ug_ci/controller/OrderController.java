@@ -8,6 +8,7 @@ import pl.ug.ug_ci.model.Order;
 import pl.ug.ug_ci.repository.OrderRepository;
 import pl.ug.ug_ci.service.OrderService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -21,10 +22,15 @@ public class OrderController {
         return orderService.findAll();
     }
 
-    @GetMapping("order/{title}")
-    public List<Order> findByTitle(@PathVariable String title, Order order) {
+    @GetMapping("order/by_title/{title}")
+    public List<Order> findByTitle(@PathVariable String title) {
         return orderService.findByName(title);
     }
 
+
+    @GetMapping("order/by_date/{date}")
+    public List<Order> findByAccountDay(@PathVariable String date) {
+        return orderService.findByAccountDay(date);
+    }
 
 }

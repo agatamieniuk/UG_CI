@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.ug.ug_ci.model.Order;
 import pl.ug.ug_ci.repository.OrderRepository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,6 +23,12 @@ public class OrderService {
         return orderRepository.findAll().stream()
                 .filter(name->name.getName().toLowerCase()
                         .contains(title.toLowerCase())).collect(Collectors.toList());
+    }
+
+    public List<Order> findByAccountDay(String date){
+        return orderRepository.findAll().stream()
+                .filter(d->d.getPostingoOrderDate().toString().contains(date))
+                .collect(Collectors.toList());
     }
 
 }

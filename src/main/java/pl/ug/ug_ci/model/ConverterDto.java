@@ -11,4 +11,5 @@ public class ConverterDto {
     private LocalDate postingDate;
     private Double exchangeRate;
 
+
 }

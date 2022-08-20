@@ -1,4 +1,4 @@
-package pl.ug.ug_ci.ConverterService;
+package pl.ug.ug_ci.service;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

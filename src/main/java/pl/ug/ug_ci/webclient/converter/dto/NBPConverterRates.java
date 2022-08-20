@@ -2,8 +2,10 @@ package pl.ug.ug_ci.webclient.converter.dto;
 
 import lombok.Getter;
 
+import java.time.LocalDate;
+
 @Getter
 public class NBPConverterRates {
-    private String effectiveDate;
+    private LocalDate effectiveDate;
     private Double mid;
 }

@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.ug.ug_ci.ConverterService.ConverterService;
 import pl.ug.ug_ci.model.ConverterDto;
-import pl.ug.ug_ci.webclient.converter.dto.NBPConverterDto;
 
 @RestController
 public class ConverterController {

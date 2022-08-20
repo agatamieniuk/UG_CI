@@ -5,6 +5,8 @@ import org.springframework.web.client.RestTemplate;
 import pl.ug.ug_ci.model.ConverterDto;
 import pl.ug.ug_ci.webclient.converter.dto.NBPConverterDto;
 
+import java.time.LocalDate;
+
 
 @Component
 public class ConverterClient {
@@ -13,7 +15,7 @@ public class ConverterClient {
     public static final String FORMAT_JSON = "/?format=json";
     private RestTemplate restTemplate = new RestTemplate();
 
-        public ConverterDto getDateforConvertion(String dateOfConvertion) {
+        public ConverterDto getDateforConvertion(LocalDate dateOfConvertion) {
             NBPConverterDto nbpConverterDtoObject = restTemplate.getForObject(USD_COURSE_URL + dateOfConvertion + FORMAT_JSON, NBPConverterDto.class);
 
             return ConverterDto.builder()

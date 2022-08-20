@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import pl.ug.ug_ci.model.ConverterDto;
 import pl.ug.ug_ci.webclient.converter.ConverterClient;
 
+import java.time.LocalDate;
+
 @Service
 @RequiredArgsConstructor
 public class ConverterService {
@@ -13,7 +15,7 @@ public class ConverterService {
 
     public ConverterDto getUSD() {
     //TODO obsługa wyjątków gdy daty nie ma w bazie
-        return converterClient.getDateforConvertion("2022-06-03");
+        return converterClient.getDateforConvertion(LocalDate.of(2022,06,02));
     }
 
 }

@@ -5,10 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import pl.ug.ug_ci.model.Order;
-import pl.ug.ug_ci.repository.OrderRepository;
 import pl.ug.ug_ci.service.OrderService;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -33,4 +31,8 @@ public class OrderController {
         return orderService.findByAccountDay(date);
     }
 
+    @GetMapping("order/sortedName")
+    public List<Order> sortedName() {
+        return orderService.sortByNameAlphabetically();
+    }
 }

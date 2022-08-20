@@ -24,7 +24,7 @@ public class OrderService {
                 .filter(name -> name.getName().toLowerCase()
                         .contains(title.toLowerCase())).collect(Collectors.toList());
     }
-
+//TODO zmiana na datę ze Stringa
     public List<Order> findByAccountDay(String date) {
         return orderRepository.findAll().stream()
                 .filter(d -> d.getPostingoOrderDate().toString().contains(date))
@@ -37,4 +37,9 @@ public class OrderService {
                 .collect(Collectors.toList());
     }
 
+    public List<Order> sortByNameReverse() {
+        return orderRepository.findAll().stream()
+                .sorted((name1, name2) ->name2.getName().compareToIgnoreCase(name1.getName()))
+                .collect(Collectors.toList());
+    }
 }

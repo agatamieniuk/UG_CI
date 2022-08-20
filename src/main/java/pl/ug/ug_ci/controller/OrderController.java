@@ -35,4 +35,9 @@ public class OrderController {
     public List<Order> sortedName() {
         return orderService.sortByNameAlphabetically();
     }
+
+        @GetMapping("order/sortedNameReverse")
+    public List<Order> sortedNameReverse() {
+        return orderService.sortByNameReverse();
+    }
 }

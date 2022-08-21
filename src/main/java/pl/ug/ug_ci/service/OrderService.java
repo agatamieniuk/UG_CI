@@ -32,7 +32,7 @@ public class OrderService {
 //TODO zmiana na datę ze Stringa
     public List<Order> findByAccountDay(String date) {
         return orderRepository.findAll().stream()
-                .filter(d -> d.getPostingoOrderDate().toString().contains(date))
+                .filter(d -> d.getOrderPostingDate().toString().contains(date))
                 .collect(Collectors.toList());
     }
 
@@ -50,13 +50,13 @@ public class OrderService {
 
     public List<Order> sortByNewestDate(){
         return orderRepository.findAll().stream()
-                .sorted((date1,date2)->date2.getPostingoOrderDate().compareTo(date1.getPostingoOrderDate()))
+                .sorted((date1,date2)->date2.getOrderPostingDate().compareTo(date1.getOrderPostingDate()))
                 .collect(Collectors.toList());
     }
 
     public List<Order> sortByLatestDate(){
         return orderRepository.findAll().stream()
-                .sorted(Comparator.comparing(Order::getPostingoOrderDate))
+                .sorted(Comparator.comparing(Order::getOrderPostingDate))
                 .collect(Collectors.toList());
     }
 

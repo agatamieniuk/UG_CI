@@ -22,11 +22,4 @@ public class Orders {
         }
         this.orders.add(order);
     }
-
-    @Override
-    public String toString() {
-        return "Orders{" +
-                "orders=" + orders +
-                '}';
-    }
 }

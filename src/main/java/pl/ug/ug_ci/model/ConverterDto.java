@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @Getter
 @Builder
 public class ConverterDto {
-    //TODO: postingDate i LocalDate postingoOrderDate; z ConverterDto jako jedna zmienna
+    //TODO: postingDate z ConverterDto i (LocalDate orderPostingDate z Orders) jako jedna zmienna
     private LocalDate postingDate;
     private Double exchangeRate;
 

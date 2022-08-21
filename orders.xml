@@ -3,25 +3,25 @@
     <order>
         <id>1</id>
         <name>MacOS komputer 1</name>
-        <postingoOrderDate/>
-        <usdcost>345.0</usdcost>
+        <orderPostingDate/>
+        <payInDollar>345.0</payInDollar>
     </order>
     <order>
         <id>2</id>
         <name>dell komputer 2</name>
-        <postingoOrderDate/>
-        <usdcost>543.0</usdcost>
+        <orderPostingDate/>
+        <payInDollar>543.0</payInDollar>
     </order>
     <order>
         <id>3</id>
         <name>ATARI komputer 3</name>
-        <postingoOrderDate/>
-        <usdcost>346.0</usdcost>
+        <orderPostingDate/>
+        <payInDollar>346.0</payInDollar>
     </order>
     <order>
         <id>4</id>
         <name>biały komputer 3</name>
-        <postingoOrderDate/>
-        <usdcost>346.0</usdcost>
+        <orderPostingDate/>
+        <payInDollar>346.0</payInDollar>
     </order>
 </order>

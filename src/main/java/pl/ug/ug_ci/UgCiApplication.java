@@ -21,6 +21,8 @@ public class UgCiApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+
+        //TODO dodawanie nowego order - co z setterem PLN?!
         Order order = new Order();
         order.setName("MacOS komputer 1");
         order.setPostingoOrderDate(LocalDate.of(2022,06,03));

@@ -18,4 +18,10 @@
         <postingoOrderDate/>
         <usdcost>346.0</usdcost>
     </order>
+    <order>
+        <id>4</id>
+        <name>biały komputer 3</name>
+        <postingoOrderDate/>
+        <usdcost>346.0</usdcost>
+    </order>
 </order>

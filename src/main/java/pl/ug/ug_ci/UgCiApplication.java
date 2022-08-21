@@ -23,25 +23,25 @@ public class UgCiApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         Order order = new Order();
         order.setName("MacOS komputer 1");
-        order.setPostingoOrderDate(LocalDate.of(2022,01,03));
+        order.setPostingoOrderDate(LocalDate.of(2022,06,03));
         order.setUsdcost(345.0);
         orderRepository.save(order);
 
         Order order1 = new Order();
         order1.setName("dell komputer 2");
-        order1.setPostingoOrderDate(LocalDate.of(2022,06,03));
+        order1.setPostingoOrderDate(LocalDate.of(2020,06,03));
         order1.setUsdcost(543.0);
         orderRepository.save(order1);
 
         Order order2 = new Order();
         order2.setName("ATARI komputer 3");
-        order2.setPostingoOrderDate(LocalDate.of(2022,12,03));
+        order2.setPostingoOrderDate(LocalDate.of(2019,12,03));
         order2.setUsdcost(346.0);
         orderRepository.save(order2);
 
         Order order3 = new Order();
         order3.setName("biały komputer 3");
-        order3.setPostingoOrderDate(LocalDate.of(2022,12,03));
+        order3.setPostingoOrderDate(LocalDate.of(2019,12,04));
         order3.setUsdcost(346.0);
         orderRepository.save(order3);
 

@@ -36,8 +36,18 @@ public class OrderController {
         return orderService.sortByNameAlphabetically();
     }
 
-        @GetMapping("order/sortedNameReverse")
+    @GetMapping("order/sortedNameReverse")
     public List<Order> sortedNameReverse() {
         return orderService.sortByNameReverse();
+    }
+
+    @GetMapping("order/sortedDateNewest")
+    public List<Order> sortedDateNewest() {
+        return orderService.sortByNewestDate();
+    }
+
+    @GetMapping("order/sortedDateLatest")
+    public List<Order> sortedDateLatest() {
+        return orderService.sortByLatestDate();
     }
 }

@@ -42,4 +42,16 @@ public class OrderService {
                 .sorted((name1, name2) ->name2.getName().compareToIgnoreCase(name1.getName()))
                 .collect(Collectors.toList());
     }
+
+    public List<Order> sortByNewestDate(){
+        return orderRepository.findAll().stream()
+                .sorted((date1,date2)->date2.getPostingoOrderDate().compareTo(date1.getPostingoOrderDate()))
+                .collect(Collectors.toList());
+    }
+
+    public List<Order> sortByLatestDate(){
+        return orderRepository.findAll().stream()
+                .sorted(Comparator.comparing(Order::getPostingoOrderDate))
+                .collect(Collectors.toList());
+    }
 }

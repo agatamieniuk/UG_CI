@@ -8,11 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Getter
-@XmlRootElement(name = "order")
+@XmlRootElement(name = "faktura")
 public class Orders {
     private List<Order> orders;
 
-    @XmlElement(name = "order")
+    @XmlElement(name = "komputer")
     public void setOrders(List<Order> orders) {
         this.orders = orders;
     }

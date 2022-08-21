@@ -1,27 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<order>
-    <order>
-        <id>1</id>
-        <name>MacOS komputer 1</name>
-        <orderPostingDate/>
-        <payInDollar>345.0</payInDollar>
-    </order>
-    <order>
-        <id>2</id>
-        <name>dell komputer 2</name>
-        <orderPostingDate/>
-        <payInDollar>543.0</payInDollar>
-    </order>
-    <order>
-        <id>3</id>
-        <name>ATARI komputer 3</name>
-        <orderPostingDate/>
-        <payInDollar>346.0</payInDollar>
-    </order>
-    <order>
-        <id>4</id>
-        <name>biały komputer 3</name>
-        <orderPostingDate/>
-        <payInDollar>346.0</payInDollar>
-    </order>
-</order>
+<faktura>
+    <komputer>
+        <nazwa>MacOS komputer 1</nazwa>
+        <data_ksiegowania/>
+        <koszt_USD>345.0</koszt_USD>
+    </komputer>
+    <komputer>
+        <nazwa>dell komputer 2</nazwa>
+        <data_ksiegowania/>
+        <koszt_USD>543.0</koszt_USD>
+    </komputer>
+    <komputer>
+        <nazwa>ATARI komputer 3</nazwa>
+        <data_ksiegowania/>
+        <koszt_USD>346.0</koszt_USD>
+    </komputer>
+    <komputer>
+        <nazwa>biały komputer 3</nazwa>
+        <data_ksiegowania/>
+        <koszt_USD>346.0</koszt_USD>
+    </komputer>
+</faktura>

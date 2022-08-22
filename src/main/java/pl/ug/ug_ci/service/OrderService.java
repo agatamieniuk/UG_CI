@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import pl.ug.ug_ci.model.Order;
 import pl.ug.ug_ci.model.Orders;
 import pl.ug.ug_ci.repository.OrderRepository;
-
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -29,11 +28,13 @@ public class OrderService {
                 .filter(name -> name.getName().toLowerCase()
                         .contains(title.toLowerCase())).collect(Collectors.toList());
     }
-//TODO zmiana na datę ze Stringa
-    public List<Order> findByAccountDay(String date) {
+
+    public List<Order> findByAccountDay(String orderPostingDate) {
         return orderRepository.findAll().stream()
-                .filter(d -> d.getOrderPostingDate().toString().contains(date))
+                .filter(d -> d.getOrderPostingDate().toString().contains(orderPostingDate))
                 .collect(Collectors.toList());
+//        public List<Order> findByAccountDay(LocalDate orderPostingDate) {
+//        return orderRepository.findByOrderPostingDate(orderPostingDate);
     }
 
     public List<Order> sortByNameAlphabetically() {
@@ -60,7 +61,6 @@ public class OrderService {
                 .collect(Collectors.toList());
     }
 
-    //TODO Localdate - nie zczytuje
     public static void convertOrderToXML(Orders orders) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(Orders.class);
         Marshaller marshaller = context.createMarshaller();

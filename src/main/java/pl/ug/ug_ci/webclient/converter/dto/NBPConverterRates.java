@@ -6,5 +6,5 @@ import java.time.LocalDate;
 @Getter
 public class NBPConverterRates {
     private LocalDate effectiveDate;
-    private Double mid;
+    private Float mid;
 }

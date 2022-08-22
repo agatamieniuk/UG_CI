@@ -4,7 +4,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 import pl.ug.ug_ci.model.ConverterDto;
 import pl.ug.ug_ci.webclient.converter.dto.NBPConverterDto;
-
 import java.time.LocalDate;
 
 
@@ -22,5 +21,4 @@ public class ConverterClient {
                     .postingDate(nbpConverterDtoObject.getRates().get(0).getEffectiveDate())
                     .exchangeRate(nbpConverterDtoObject.getRates().get(0).getMid()).build();
     }
-
 }

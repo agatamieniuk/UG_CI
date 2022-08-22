@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 import pl.ug.ug_ci.model.Order;
 import pl.ug.ug_ci.service.OrderService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -30,6 +31,7 @@ public class OrderController {
 
     @GetMapping("by_date/{date}")
     public List<Order> findByAccountDay(@PathVariable String date) {
+//        return orderService.findByAccountDay(date);
         return orderService.findByAccountDay(date);
     }
 

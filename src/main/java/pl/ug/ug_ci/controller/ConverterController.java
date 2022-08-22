@@ -14,8 +14,8 @@ public class ConverterController {
         this.converterService = converterService;
     }
 
-    @GetMapping
-    public ConverterDto getUSD(){
-        return converterService.getUSD();
-    }
+//    @GetMapping
+//    public ConverterDto getUSD(){
+//        return converterService.getUSD();
+//    }
 }

@@ -15,13 +15,15 @@ import java.time.LocalDate;
 @Table(name = "orders")
 @XmlRootElement(name = "faktura")
 public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
     @Column(name = "nazwa")
     private String name;
     @Column(name = "data_zaksiegowania")
     LocalDate orderPostingDate;
     @Column(name = "koszt_USD")
     private Float payInDollar;
-    @Id
     @Column(name = "koszt_PLN")
     private Float payInPLN;
 

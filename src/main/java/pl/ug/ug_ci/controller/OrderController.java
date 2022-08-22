@@ -12,6 +12,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 public class OrderController {
+    //w controllerze zwracam obiekt bez relacji - zapisany w DtO
 
     OrderService orderService;
 
@@ -33,7 +34,7 @@ public class OrderController {
 //    metoda do użycia w przypadku skorzystania z repozytorium (pozostawiłam String, aby można było wyszukiwać po części daty):
 
 //    public List<Order> findByAccountDay(@PathVariable LocalDate date) {
-//        return orderService.findByAccountDay(date);}
+//    return orderService.findByAccountDay(date);}
 
     @GetMapping("sorted-name")
     public List<Order> sortedName() {

@@ -24,8 +24,9 @@ public class OrderService {
     }
 
     public List<Order> findByName(String name) {
-//        Wyszukiwanie pozostawiłam na streamach, gdyz z repozytorium wyszukiwało po pełnej nazwie, a w wymaganiach jest fragment
-//        return orderRepository.findByName(name);
+//        Wyszukiwanie pozostawiłam na streamach, gdyz z repozytorium wyszukiwało po pełnej nazwie, a w wymaganiach jest fragment. W przypadku użycia repozytorium:
+//        public List<Order> findByName(String name) {
+//        return orderRepository.findByName(name);}
         return orderRepository.findAll().stream()
                 .filter(names -> names.getName().toLowerCase()
                         .contains(name.toLowerCase())).collect(Collectors.toList());

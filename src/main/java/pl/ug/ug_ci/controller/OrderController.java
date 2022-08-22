@@ -32,6 +32,7 @@ public class OrderController {
         return orderService.findByAccountDay(date);
     }
 //    metoda do użycia w przypadku skorzystania z repozytorium (pozostawiłam String, aby można było wyszukiwać po części daty):
+
 //    public List<Order> findByAccountDay(@PathVariable LocalDate date) {
 //        return orderService.findByAccountDay(date);}
 

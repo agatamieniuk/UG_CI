@@ -11,7 +11,6 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("order")
 public class OrderController {
 
     OrderService orderService;

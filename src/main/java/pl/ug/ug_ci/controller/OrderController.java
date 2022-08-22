@@ -21,34 +21,36 @@ public class OrderController {
         return orderService.findAll();
     }
 
-    @GetMapping("by_title/{title}")
-    public List<Order> findByTitle(@PathVariable String title) {
-        return orderService.findByName(title);
+    @GetMapping("by-name/{name}")
+    public List<Order> findByName(@PathVariable String name) {
+        return orderService.findByName(name);
     }
 
 
-    @GetMapping("by_date/{date}")
+    @GetMapping("by-date/{date}")
     public List<Order> findByAccountDay(@PathVariable String date) {
-//        return orderService.findByAccountDay(date);
         return orderService.findByAccountDay(date);
     }
+//    metoda do użycia w przypadku skorzystania z repozytorium (pozostawiłam String, aby można było wyszukiwać po części daty):
+//    public List<Order> findByAccountDay(@PathVariable LocalDate date) {
+//        return orderService.findByAccountDay(date);}
 
-    @GetMapping("sortedName")
+    @GetMapping("sorted-name")
     public List<Order> sortedName() {
         return orderService.sortByNameAlphabetically();
     }
 
-    @GetMapping("sortedNameReverse")
+    @GetMapping("sorted-name-reverse")
     public List<Order> sortedNameReverse() {
         return orderService.sortByNameReverse();
     }
 
-    @GetMapping("sortedDateNewest")
+    @GetMapping("sorted-date-newest")
     public List<Order> sortedDateNewest() {
         return orderService.sortByNewestDate();
     }
 
-    @GetMapping("sortedDateLatest")
+    @GetMapping("sorted-date-latest")
     public List<Order> sortedDateLatest() {
         return orderService.sortByLatestDate();
     }

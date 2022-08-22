@@ -23,10 +23,12 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    public List<Order> findByName(String title) {
+    public List<Order> findByName(String name) {
+//        Wyszukiwanie pozostawiłam na streamach, gdyz z repozytorium wyszukiwało po pełnej nazwie, a w wymaganiach jest fragment
+//        return orderRepository.findByName(name);
         return orderRepository.findAll().stream()
-                .filter(name -> name.getName().toLowerCase()
-                        .contains(title.toLowerCase())).collect(Collectors.toList());
+                .filter(names -> names.getName().toLowerCase()
+                        .contains(name.toLowerCase())).collect(Collectors.toList());
     }
 
     public List<Order> findByAccountDay(String orderPostingDate) {

@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order, Integer> {
 
+//    Przykładowe metody wyszukiwania z bazy danych (bez streamow):
+    List<Order> findByName(String name);
     List<Order> findByOrderPostingDate(LocalDate orderPostingDate);
 
 }

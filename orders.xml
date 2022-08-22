@@ -1,27 +1,39 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <faktura>
     <komputer>
-        <nazwa>MacOS komputer 1</nazwa>
+        <nazwa>komputer 1</nazwa>
         <data_ksiegowania>2022-01-03</data_ksiegowania>
         <koszt_USD>345.0</koszt_USD>
         <koszt_PLN>1394.6279</koszt_PLN>
     </komputer>
     <komputer>
-        <nazwa>dell komputer 2</nazwa>
-        <data_ksiegowania>2020-06-03</data_ksiegowania>
+        <nazwa>komputer 1</nazwa>
+        <data_ksiegowania>2022-01-10</data_ksiegowania>
+        <koszt_USD>345.0</koszt_USD>
+        <koszt_PLN>1382.208</koszt_PLN>
+    </komputer>
+    <komputer>
+        <nazwa>komputer 2</nazwa>
+        <data_ksiegowania>2022-01-03</data_ksiegowania>
         <koszt_USD>543.0</koszt_USD>
-        <koszt_PLN>1349.6746</koszt_PLN>
+        <koszt_PLN>2195.0232</koszt_PLN>
     </komputer>
     <komputer>
-        <nazwa>ATARI komputer 3</nazwa>
-        <data_ksiegowania>2019-12-03</data_ksiegowania>
-        <koszt_USD>346.0</koszt_USD>
-        <koszt_PLN>1335.357</koszt_PLN>
+        <nazwa>komputer 2</nazwa>
+        <data_ksiegowania>2022-01-10</data_ksiegowania>
+        <koszt_USD>543.0</koszt_USD>
+        <koszt_PLN>2175.4753</koszt_PLN>
     </komputer>
     <komputer>
-        <nazwa>biały komputer 3</nazwa>
-        <data_ksiegowania>2019-12-04</data_ksiegowania>
+        <nazwa>komputer 3</nazwa>
+        <data_ksiegowania>2022-01-03</data_ksiegowania>
         <koszt_USD>346.0</koszt_USD>
-        <koszt_PLN>1333.3215</koszt_PLN>
+        <koszt_PLN>1398.6704</koszt_PLN>
+    </komputer>
+    <komputer>
+        <nazwa>komputer 3</nazwa>
+        <data_ksiegowania>2022-01-10</data_ksiegowania>
+        <koszt_USD>346.0</koszt_USD>
+        <koszt_PLN>1386.2145</koszt_PLN>
     </komputer>
 </faktura>

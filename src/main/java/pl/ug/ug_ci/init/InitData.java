@@ -26,59 +26,85 @@ public class InitData implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
-        Order order = new Order();
+        Order komputer1 = new Order();
         try {
-            order.setName("MacOS komputer 1");
-            order.setPayInDollar(345.0F);
-            order.setOrderPostingDate(LocalDate.of(2022, 01, 03));
-            ConverterDto converter = converterClient.getDateforConvertion(order.getOrderPostingDate());
-            order.setPayInPLN(converter.getExchangeRate() * order.getPayInDollar());
-            orderRepository.save(order);
+            komputer1.setName("komputer 1");
+            komputer1.setPayInDollar(345F);
+            komputer1.setOrderPostingDate(LocalDate.of(2022, 01, 03));
+            ConverterDto converter1 = converterClient.getDateforConvertion(komputer1.getOrderPostingDate());
+            komputer1.setPayInPLN(converter1.getExchangeRate() * komputer1.getPayInDollar());
+            orderRepository.save(komputer1);
         } catch (HttpClientErrorException ex) {
             log.warn("Brak opublikowanego kursu na ww. dzień", ex);
         }
 
-        Order order1 = new Order();
+        Order komputer1a = new Order();
         try {
-            order1.setName("dell komputer 2");
-            order1.setPayInDollar(543.0F);
-            order1.setOrderPostingDate(LocalDate.of(2020, 06, 03));
-            ConverterDto converter1 = converterClient.getDateforConvertion(order1.getOrderPostingDate());
-            order1.setPayInPLN(converter1.getExchangeRate() * order.getPayInDollar());
-            orderRepository.save(order1);
+            komputer1a.setName("komputer 1");
+            komputer1a.setPayInDollar(345F);
+            komputer1a.setOrderPostingDate(LocalDate.of(2022, 01, 10));
+            ConverterDto converter1a = converterClient.getDateforConvertion(komputer1a.getOrderPostingDate());
+            komputer1a.setPayInPLN(converter1a.getExchangeRate() * komputer1a.getPayInDollar());
+            orderRepository.save(komputer1a);
         } catch (HttpClientErrorException ex) {
             log.warn("Brak opublikowanego kursu na ww. dzień", ex);
         }
 
-        Order order2 = new Order();
+        Order komputer2 = new Order();
         try {
-            order2.setName("ATARI komputer 3");
-            order2.setPayInDollar(346.0F);
-            order2.setOrderPostingDate(LocalDate.of(2019, 12, 03));
-            ConverterDto converter2 = converterClient.getDateforConvertion(order2.getOrderPostingDate());
-            order2.setPayInPLN(converter2.getExchangeRate() * order.getPayInDollar());
-            orderRepository.save(order2);
+            komputer2.setName("komputer 2");
+            komputer2.setPayInDollar(543F);
+            komputer2.setOrderPostingDate(LocalDate.of(2022, 01, 03));
+            ConverterDto converter2 = converterClient.getDateforConvertion(komputer2.getOrderPostingDate());
+            komputer2.setPayInPLN(converter2.getExchangeRate() * komputer2.getPayInDollar());
+            orderRepository.save(komputer2);
         } catch (HttpClientErrorException ex) {
             log.warn("Brak opublikowanego kursu na ww. dzień", ex);
         }
 
-        Order order3 = new Order();
+        Order komputer2a = new Order();
         try {
-            order3.setName("biały komputer 3");
-            order3.setPayInDollar(346.0F);
-            order3.setOrderPostingDate(LocalDate.of(2019, 12, 04));
-            ConverterDto converter3 = converterClient.getDateforConvertion(order3.getOrderPostingDate());
-            order3.setPayInPLN(converter3.getExchangeRate() * order.getPayInDollar());
-            orderRepository.save(order3);
+            komputer2a.setName("komputer 2");
+            komputer2a.setPayInDollar(543F);
+            komputer2a.setOrderPostingDate(LocalDate.of(2022, 01, 10));
+            ConverterDto converter2a = converterClient.getDateforConvertion(komputer2a.getOrderPostingDate());
+            komputer2a.setPayInPLN(converter2a.getExchangeRate() * komputer2a.getPayInDollar());
+            orderRepository.save(komputer2a);
+        } catch (HttpClientErrorException ex) {
+            log.warn("Brak opublikowanego kursu na ww. dzień", ex);
+        }
+
+        Order komputer3 = new Order();
+        try {
+            komputer3.setName("komputer 3");
+            komputer3.setPayInDollar(346F);
+            komputer3.setOrderPostingDate(LocalDate.of(2022, 01, 03));
+            ConverterDto converter3 = converterClient.getDateforConvertion(komputer3.getOrderPostingDate());
+            komputer3.setPayInPLN(converter3.getExchangeRate() * komputer3.getPayInDollar());
+            orderRepository.save(komputer3);
+        } catch (HttpClientErrorException ex) {
+            log.warn("Brak opublikowanego kursu na ww. dzień", ex);
+        }
+
+        Order komputer3a = new Order();
+        try {
+            komputer3a.setName("komputer 3");
+            komputer3a.setPayInDollar(346F);
+            komputer3a.setOrderPostingDate(LocalDate.of(2022, 01, 10));
+            ConverterDto converter3a = converterClient.getDateforConvertion(komputer3a.getOrderPostingDate());
+            komputer3a.setPayInPLN(converter3a.getExchangeRate() * komputer3a.getPayInDollar());
+            orderRepository.save(komputer3a);
         } catch (HttpClientErrorException ex) {
             log.warn("Brak opublikowanego kursu na ww. dzień", ex);
         }
 
         Orders orders = new Orders();
-        orders.add(order);
-        orders.add(order1);
-        orders.add(order2);
-        orders.add(order3);
+        orders.add(komputer1);
+        orders.add(komputer1a);
+        orders.add(komputer2);
+        orders.add(komputer2a);
+        orders.add(komputer3);
+        orders.add(komputer3a);
         OrderService.convertOrderToXML(orders);
     }
 }

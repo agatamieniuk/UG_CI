@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.ug.ug_ci.model.Order;
 import pl.ug.ug_ci.service.OrderService;
@@ -22,22 +21,34 @@ public class OrderController {
         return orderService.findAll();
     }
 
-    //    -Optymalizacja wyszukiwania/sortowania:
+    //Optymalizacja wyszukiwania/sortowania:
     @GetMapping("search")
     public List<Order> findBy(@Param("keyword") String keyword) {
         return orderService.findBy(keyword);
     }
 
     //Optymalizacja sortowania - po nazwie rosnąco:
-    @GetMapping("sort")
+    @GetMapping("sort-name")
     public List<Order> sortByNameAs(){
         return orderService.sortByNameAsc();
     }
 
     //Optymalizacja sortowania  - po nazwie malejąco:
-    @GetMapping("sort-desc")
+    @GetMapping("sort-name-desc")
     public List<Order> sortByNameDesc(){
         return orderService.sortByNameDesc();
+    }
+
+    //Optymalizacja sortowania  - po dacie od najnowszego:
+    @GetMapping("sort-date")
+    public List<Order> sortByDateAsc(){
+        return orderService.sortByDateAsc();
+    }
+
+    //Optymalizacja sortowania  - po dacie od najstarszego:
+    @GetMapping("sort-date-desc")
+    public List<Order> sortByDateDesc(){
+        return orderService.sortByDateDesc();
     }
 
     @GetMapping("by-name/{name}")

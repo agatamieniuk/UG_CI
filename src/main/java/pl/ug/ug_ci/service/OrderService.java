@@ -42,6 +42,16 @@ public class OrderService {
         return orderRepository.findAll(Sort.by(Sort.Direction.DESC, "name"));
     }
 
+    //Optymalizacja sortowania  - po dacie od najnowszego:
+    public List<Order> sortByDateAsc(){
+        return orderRepository.findAll(Sort.by(Sort.Direction.ASC, "orderPostingDate"));
+    }
+
+    //Optymalizacja sortowania  - po dacie od najstarszego:
+    public List<Order> sortByDateDesc(){
+        return orderRepository.findAll(Sort.by(Sort.Direction.DESC, "orderPostingDate"));
+    }
+
 
     public List<Order> findByName(String name) {
 //        Wyszukiwanie pozostawiłam na streamach, gdyz z repozytorium wyszukiwało po pełnej nazwie, a w wymaganiach jest fragment. W przypadku użycia repozytorium:

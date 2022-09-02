@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface OrderRepository extends JpaRepository<Order, Integer> {
 
-    //    -Optymalizacja wyszukiwania:
+    //Optymalizacja wyszukiwania:
     @Query("SELECT o FROM Order o WHERE " +
             "concat(o.id, o.name, o.orderPostingDate)" +
             "LIKE %?1%")

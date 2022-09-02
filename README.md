@@ -18,7 +18,11 @@ http://localhost:8080/sorted-date-latest - posortowanie od najstarszego
 
 http://localhost:8080/search?keyword={wyszukiwana fraza} - wyszukiwanie po id/nazwie/dacie/fragmencie tegoż
 
-http://localhost:8080/sort - posortowanie od A do Z
+http://localhost:8080/sort-name - posortowanie od A do Z
 
-http://localhost:8080/sort-desc - posortowanie od Z do A
+http://localhost:8080/sort-name-desc - posortowanie od Z do A
+
+http://localhost:8080/sort-date - posortowanie od najnowszego
+
+http://localhost:8080/sort-date-desc - posortowanie od najstarszego
 

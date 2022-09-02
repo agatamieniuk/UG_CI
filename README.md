@@ -26,3 +26,6 @@ http://localhost:8080/sort-date - posortowanie od najnowszego
 
 http://localhost:8080/sort-date-desc - posortowanie od najstarszego
 
+Dodawanie rekordów przez żądanie HTTP:
+
+![](../../../Pictures/Screenshots/Screenshot from 2022-09-02 16-36-10.png)

@@ -1,11 +1,15 @@
 package pl.ug.ug_ci.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import pl.ug.ug_ci.model.ConverterDto;
 import pl.ug.ug_ci.model.Order;
 import pl.ug.ug_ci.model.Orders;
 import pl.ug.ug_ci.repository.OrderRepository;
+import pl.ug.ug_ci.webclient.converter.ConverterClient;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
@@ -19,6 +23,9 @@ import java.util.stream.Collectors;
 public class OrderService {
 
     private OrderRepository orderRepository;
+
+    @Autowired
+    ConverterClient converterClient;
 
     public List<Order> findAll() {
         return orderRepository.findAll();
@@ -52,6 +59,12 @@ public class OrderService {
         return orderRepository.findAll(Sort.by(Sort.Direction.DESC, "orderPostingDate"));
     }
 
+    //Dodawanie rekordów przez żądanie HTTP:
+    public Order saveOrder(Order order){
+        ConverterDto converter = converterClient.getDateforConvertion(order.getOrderPostingDate());
+        order.setPayInPLN(converter.getExchangeRate() * order.getPayInDollar());
+        return orderRepository.save(order);
+    }
 
     public List<Order> findByName(String name) {
 //        Wyszukiwanie pozostawiłam na streamach, gdyz z repozytorium wyszukiwało po pełnej nazwie, a w wymaganiach jest fragment. W przypadku użycia repozytorium:

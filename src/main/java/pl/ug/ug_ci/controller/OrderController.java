@@ -2,9 +2,7 @@ package pl.ug.ug_ci.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.data.repository.query.Param;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.ug.ug_ci.model.Order;
 import pl.ug.ug_ci.service.OrderService;
 
@@ -49,6 +47,13 @@ public class OrderController {
     @GetMapping("sort-date-desc")
     public List<Order> sortByDateDesc(){
         return orderService.sortByDateDesc();
+    }
+
+    //Dodawanie rekordów:
+    @PostMapping("save")
+    public String saveOrder(@RequestBody Order order){
+        orderService.saveOrder(order);
+        return "Dodano...";
     }
 
     @GetMapping("by-name/{name}")

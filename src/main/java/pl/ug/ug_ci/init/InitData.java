@@ -28,7 +28,7 @@ public class InitData implements CommandLineRunner {
 
         Order komputer1 = new Order();
         try {
-            komputer1.setName("komputer 1");
+            komputer1.setName("A komputer 1");
             komputer1.setPayInDollar(345F);
             komputer1.setOrderPostingDate(LocalDate.of(2022, 01, 03));
             ConverterDto converter1 = converterClient.getDateforConvertion(komputer1.getOrderPostingDate());
@@ -40,7 +40,7 @@ public class InitData implements CommandLineRunner {
 
         Order komputer1a = new Order();
         try {
-            komputer1a.setName("komputer 1");
+            komputer1a.setName("C komputer 1");
             komputer1a.setPayInDollar(345F);
             komputer1a.setOrderPostingDate(LocalDate.of(2022, 01, 10));
             ConverterDto converter1a = converterClient.getDateforConvertion(komputer1a.getOrderPostingDate());
@@ -52,7 +52,7 @@ public class InitData implements CommandLineRunner {
 
         Order komputer2 = new Order();
         try {
-            komputer2.setName("komputer 2");
+            komputer2.setName("B komputer 2");
             komputer2.setPayInDollar(543F);
             komputer2.setOrderPostingDate(LocalDate.of(2022, 01, 03));
             ConverterDto converter2 = converterClient.getDateforConvertion(komputer2.getOrderPostingDate());
@@ -64,7 +64,7 @@ public class InitData implements CommandLineRunner {
 
         Order komputer2a = new Order();
         try {
-            komputer2a.setName("komputer 2");
+            komputer2a.setName("D komputer 2");
             komputer2a.setPayInDollar(543F);
             komputer2a.setOrderPostingDate(LocalDate.of(2022, 01, 10));
             ConverterDto converter2a = converterClient.getDateforConvertion(komputer2a.getOrderPostingDate());
@@ -76,7 +76,7 @@ public class InitData implements CommandLineRunner {
 
         Order komputer3 = new Order();
         try {
-            komputer3.setName("komputer 3");
+            komputer3.setName("F komputer 3");
             komputer3.setPayInDollar(346F);
             komputer3.setOrderPostingDate(LocalDate.of(2022, 01, 03));
             ConverterDto converter3 = converterClient.getDateforConvertion(komputer3.getOrderPostingDate());
@@ -88,7 +88,7 @@ public class InitData implements CommandLineRunner {
 
         Order komputer3a = new Order();
         try {
-            komputer3a.setName("komputer 3");
+            komputer3a.setName("E komputer 3");
             komputer3a.setPayInDollar(346F);
             komputer3a.setOrderPostingDate(LocalDate.of(2022, 01, 10));
             ConverterDto converter3a = converterClient.getDateforConvertion(komputer3a.getOrderPostingDate());

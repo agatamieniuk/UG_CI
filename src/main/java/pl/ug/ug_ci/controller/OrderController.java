@@ -28,6 +28,18 @@ public class OrderController {
         return orderService.findBy(keyword);
     }
 
+    //Optymalizacja sortowania - po nazwie rosnąco:
+    @GetMapping("sort")
+    public List<Order> sortByNameAs(){
+        return orderService.sortByNameAsc();
+    }
+
+    //Optymalizacja sortowania  - po nazwie malejąco:
+    @GetMapping("sort-desc")
+    public List<Order> sortByNameDesc(){
+        return orderService.sortByNameDesc();
+    }
+
     @GetMapping("by-name/{name}")
     public List<Order> findByName(@PathVariable String name) {
         return orderService.findByName(name);

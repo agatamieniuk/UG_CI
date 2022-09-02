@@ -15,6 +15,4 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
             "LIKE %?1%")
     List<Order> findAllBy(String keyword);
 
-
-
 }

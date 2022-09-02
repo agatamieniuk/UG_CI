@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <faktura>
     <komputer>
-        <nazwa>komputer 1</nazwa>
+        <nazwa>A komputer 1</nazwa>
         <data_ksiegowania>2022-01-03</data_ksiegowania>
         <koszt_USD>345.0</koszt_USD>
         <koszt_PLN>1394.6279</koszt_PLN>
     </komputer>
     <komputer>
-        <nazwa>komputer 1</nazwa>
+        <nazwa>C komputer 1</nazwa>
         <data_ksiegowania>2022-01-10</data_ksiegowania>
         <koszt_USD>345.0</koszt_USD>
         <koszt_PLN>1382.208</koszt_PLN>
     </komputer>
     <komputer>
-        <nazwa>komputer 2</nazwa>
+        <nazwa>B komputer 2</nazwa>
         <data_ksiegowania>2022-01-03</data_ksiegowania>
         <koszt_USD>543.0</koszt_USD>
         <koszt_PLN>2195.0232</koszt_PLN>
     </komputer>
     <komputer>
-        <nazwa>komputer 2</nazwa>
+        <nazwa>D komputer 2</nazwa>
         <data_ksiegowania>2022-01-10</data_ksiegowania>
         <koszt_USD>543.0</koszt_USD>
         <koszt_PLN>2175.4753</koszt_PLN>
     </komputer>
     <komputer>
-        <nazwa>komputer 3</nazwa>
+        <nazwa>F komputer 3</nazwa>
         <data_ksiegowania>2022-01-03</data_ksiegowania>
         <koszt_USD>346.0</koszt_USD>
         <koszt_PLN>1398.6704</koszt_PLN>
     </komputer>
     <komputer>
-        <nazwa>komputer 3</nazwa>
+        <nazwa>E komputer 3</nazwa>
         <data_ksiegowania>2022-01-10</data_ksiegowania>
         <koszt_USD>346.0</koszt_USD>
         <koszt_PLN>1386.2145</koszt_PLN>

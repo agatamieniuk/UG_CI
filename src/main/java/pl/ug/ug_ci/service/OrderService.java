@@ -1,6 +1,7 @@
 package pl.ug.ug_ci.service;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import pl.ug.ug_ci.model.Order;
 import pl.ug.ug_ci.model.Orders;
@@ -30,6 +31,17 @@ public class OrderService {
         }
         return orderRepository.findAll();
     }
+
+    //Optymalizacja sortowania  - po nazwie rosnąco:
+    public List<Order> sortByNameAsc(){
+        return orderRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
+    }
+
+    //Optymalizacja sortowania  - po nazwie malejąco:
+    public List<Order> sortByNameDesc(){
+        return orderRepository.findAll(Sort.by(Sort.Direction.DESC, "name"));
+    }
+
 
     public List<Order> findByName(String name) {
 //        Wyszukiwanie pozostawiłam na streamach, gdyz z repozytorium wyszukiwało po pełnej nazwie, a w wymaganiach jest fragment. W przypadku użycia repozytorium:

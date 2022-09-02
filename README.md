@@ -27,5 +27,7 @@ http://localhost:8080/sort-date - posortowanie od najnowszego
 http://localhost:8080/sort-date-desc - posortowanie od najstarszego
 
 Dodawanie rekordów przez żądanie HTTP:
+![Alt text](https://i.ibb.co/hcrD6Zp/Dodawanie.png)
 
-![alt text]
+Edycja rekordów przez żądanie HTTP:
+![Alt text](https://i.ibb.co/k0vcCmB/Edycja.png)

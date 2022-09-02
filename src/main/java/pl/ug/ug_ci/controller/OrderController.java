@@ -1,10 +1,13 @@
 package pl.ug.ug_ci.controller;
 
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
+import pl.ug.ug_ci.model.ConverterDto;
 import pl.ug.ug_ci.model.Order;
 import pl.ug.ug_ci.service.OrderService;
+import pl.ug.ug_ci.webclient.converter.ConverterClient;
 
 import java.util.List;
 
@@ -13,6 +16,9 @@ import java.util.List;
 public class OrderController {
 
     OrderService orderService;
+
+    @Autowired
+    ConverterClient converterClient;
 
     @GetMapping
     public List<Order> getAllOrders() {
@@ -49,11 +55,25 @@ public class OrderController {
         return orderService.sortByDateDesc();
     }
 
-    //Dodawanie rekordów:
+    //Dodawanie rekordów przez żądanie HTTP:
     @PostMapping("save")
     public String saveOrder(@RequestBody Order order){
         orderService.saveOrder(order);
         return "Dodano...";
+    }
+
+    //Edycja rekordów przez żądanie HTTP:
+    @PutMapping("update/{id}")
+    public String updateOrder(@PathVariable Integer id, @RequestBody Order order){
+        Order updatedOrder = orderService.findById(id);
+        updatedOrder.setName(order.getName());
+        updatedOrder.setOrderPostingDate(order.getOrderPostingDate());
+        updatedOrder.setPayInDollar(order.getPayInDollar());
+        ConverterDto converter = converterClient.getDateforConvertion(order.getOrderPostingDate());
+        order.setPayInPLN(converter.getExchangeRate() * order.getPayInDollar());
+
+        orderService.saveOrder(updatedOrder);
+        return "Edytowano...";
     }
 
     @GetMapping("by-name/{name}")

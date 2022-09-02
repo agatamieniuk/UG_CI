@@ -32,38 +32,42 @@ public class OrderService {
     }
 
     //Optymalizacja wyszukiwania:
-    public List<Order> findBy(String keyword){
-        if(keyword != null){
+    public List<Order> findBy(String keyword) {
+        if (keyword != null) {
             return orderRepository.findAllBy(keyword);
         }
         return orderRepository.findAll();
     }
 
     //Optymalizacja sortowania  - po nazwie rosnąco:
-    public List<Order> sortByNameAsc(){
+    public List<Order> sortByNameAsc() {
         return orderRepository.findAll(Sort.by(Sort.Direction.ASC, "name"));
     }
 
     //Optymalizacja sortowania  - po nazwie malejąco:
-    public List<Order> sortByNameDesc(){
+    public List<Order> sortByNameDesc() {
         return orderRepository.findAll(Sort.by(Sort.Direction.DESC, "name"));
     }
 
     //Optymalizacja sortowania  - po dacie od najnowszego:
-    public List<Order> sortByDateAsc(){
+    public List<Order> sortByDateAsc() {
         return orderRepository.findAll(Sort.by(Sort.Direction.ASC, "orderPostingDate"));
     }
 
     //Optymalizacja sortowania  - po dacie od najstarszego:
-    public List<Order> sortByDateDesc(){
+    public List<Order> sortByDateDesc() {
         return orderRepository.findAll(Sort.by(Sort.Direction.DESC, "orderPostingDate"));
     }
 
     //Dodawanie rekordów przez żądanie HTTP:
-    public Order saveOrder(Order order){
+    public Order saveOrder(Order order) {
         ConverterDto converter = converterClient.getDateforConvertion(order.getOrderPostingDate());
         order.setPayInPLN(converter.getExchangeRate() * order.getPayInDollar());
         return orderRepository.save(order);
+    }
+
+    public Order findById(Integer id){
+        return orderRepository.findById(id).get();
     }
 
     public List<Order> findByName(String name) {
@@ -91,22 +95,23 @@ public class OrderService {
 
     public List<Order> sortByNameReverse() {
         return orderRepository.findAll().stream()
-                .sorted((name1, name2) ->name2.getName().compareToIgnoreCase(name1.getName()))
+                .sorted((name1, name2) -> name2.getName().compareToIgnoreCase(name1.getName()))
                 .collect(Collectors.toList());
     }
 
-    public List<Order> sortByNewestDate(){
+    public List<Order> sortByNewestDate() {
         return orderRepository.findAll().stream()
-                .sorted((date1,date2)->date2.getOrderPostingDate().compareTo(date1.getOrderPostingDate()))
+                .sorted((date1, date2) -> date2.getOrderPostingDate().compareTo(date1.getOrderPostingDate()))
                 .collect(Collectors.toList());
     }
 
-    public List<Order> sortByLatestDate(){
+    public List<Order> sortByLatestDate() {
         return orderRepository.findAll().stream()
                 .sorted(Comparator.comparing(Order::getOrderPostingDate))
                 .collect(Collectors.toList());
     }
-//TODO nowy package = servis
+
+    //TODO nowy package = servis
     public static void convertOrderToXML(Orders orders) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(Orders.class);
         Marshaller marshaller = context.createMarshaller();

@@ -1,24 +1,31 @@
 package pl.ug.ug_ci.controller;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.ug.ug_ci.model.Order;
 import pl.ug.ug_ci.service.OrderService;
+
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
 public class OrderController {
-    //w controllerze zwracam obiekt bez relacji - zapisany w DtO
 
     OrderService orderService;
 
     @GetMapping
     public List<Order> getAllOrders() {
         return orderService.findAll();
+    }
+
+    //    -Optymalizacja wyszukiwania/sortowania:
+    @GetMapping("search")
+    public List<Order> findBy(@Param("keyword") String keyword) {
+        return orderService.findBy(keyword);
     }
 
     @GetMapping("by-name/{name}")
@@ -31,10 +38,6 @@ public class OrderController {
     public List<Order> findByAccountDay(@PathVariable String date) {
         return orderService.findByAccountDay(date);
     }
-//    metoda do użycia w przypadku skorzystania z repozytorium (pozostawiłam String, aby można było wyszukiwać po części daty):
-
-//    public List<Order> findByAccountDay(@PathVariable LocalDate date) {
-//    return orderService.findByAccountDay(date);}
 
     @GetMapping("sorted-name")
     public List<Order> sortedName() {

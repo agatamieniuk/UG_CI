@@ -23,6 +23,14 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
+    //Optymalizacja wyszukiwania:
+    public List<Order> findBy(String keyword){
+        if(keyword != null){
+            return orderRepository.findAllBy(keyword);
+        }
+        return orderRepository.findAll();
+    }
+
     public List<Order> findByName(String name) {
 //        Wyszukiwanie pozostawiłam na streamach, gdyz z repozytorium wyszukiwało po pełnej nazwie, a w wymaganiach jest fragment. W przypadku użycia repozytorium:
 //        public List<Order> findByName(String name) {

@@ -1,5 +1,7 @@
 http://localhost:8080/ - lista wszystkich zamówień
 
+http://localhost:8080/search?keyword={wyszukiwana fraza} - wyszukiwanie po id/nazwie/dacie/fragmencie tegoż
+
 http://localhost:8080/by-name/{name} - wyszukiwanie po nazwie/fragmencie nazwy
 
 http://localhost:8080/by-date/{date} - wyszukiwanie po dacie/fragmencie daty 

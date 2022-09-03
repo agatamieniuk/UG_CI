@@ -46,4 +46,15 @@ public class Order {
     public void setPayInDollar(Float payInDollar) {
         this.payInDollar = payInDollar;
     }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", orderPostingDate=" + orderPostingDate +
+                ", payInDollar=" + payInDollar +
+                ", payInPLN=" + payInPLN +
+                '}';
+    }
 }

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <faktura>
     <komputer>
-        <nazwa>A komputer 1</nazwa>
+        <nazwa>komputer 1</nazwa>
         <data_ksiegowania>2022-01-03</data_ksiegowania>
         <koszt_USD>345.0</koszt_USD>
         <koszt_PLN>1394.6279</koszt_PLN>

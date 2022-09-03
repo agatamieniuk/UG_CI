@@ -76,34 +76,34 @@ public class OrderController {
         return "Edytowano...";
     }
 
-    @GetMapping("by-name/{name}")
-    public List<Order> findByName(@PathVariable String name) {
-        return orderService.findByName(name);
-    }
-
-
-    @GetMapping("by-date/{date}")
-    public List<Order> findByAccountDay(@PathVariable String date) {
-        return orderService.findByAccountDay(date);
-    }
-
-    @GetMapping("sorted-name")
-    public List<Order> sortedName() {
-        return orderService.sortByNameAlphabetically();
-    }
-
-    @GetMapping("sorted-name-reverse")
-    public List<Order> sortedNameReverse() {
-        return orderService.sortByNameReverse();
-    }
-
-    @GetMapping("sorted-date-newest")
-    public List<Order> sortedDateNewest() {
-        return orderService.sortByNewestDate();
-    }
-
-    @GetMapping("sorted-date-latest")
-    public List<Order> sortedDateLatest() {
-        return orderService.sortByLatestDate();
-    }
+//    @GetMapping("by-name/{name}")
+//    public List<Order> findByName(@PathVariable String name) {
+//        return orderService.findByName(name);
+//    }
+//
+//
+//    @GetMapping("by-date/{date}")
+//    public List<Order> findByAccountDay(@PathVariable String date) {
+//        return orderService.findByAccountDay(date);
+//    }
+//
+//    @GetMapping("sorted-name")
+//    public List<Order> sortedName() {
+//        return orderService.sortByNameAlphabetically();
+//    }
+//
+//    @GetMapping("sorted-name-reverse")
+//    public List<Order> sortedNameReverse() {
+//        return orderService.sortByNameReverse();
+//    }
+//
+//    @GetMapping("sorted-date-newest")
+//    public List<Order> sortedDateNewest() {
+//        return orderService.sortByNewestDate();
+//    }
+//
+//    @GetMapping("sorted-date-latest")
+//    public List<Order> sortedDateLatest() {
+//        return orderService.sortByLatestDate();
+//    }
 }

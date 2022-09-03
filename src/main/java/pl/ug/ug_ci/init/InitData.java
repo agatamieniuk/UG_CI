@@ -28,7 +28,7 @@ public class InitData implements CommandLineRunner {
 
         Order komputer1 = new Order();
         try {
-            komputer1.setName("A komputer 1");
+            komputer1.setName("komputer 1");
             komputer1.setPayInDollar(345F);
             komputer1.setOrderPostingDate(LocalDate.of(2022, 01, 03));
             ConverterDto converter1 = converterClient.getDateforConvertion(komputer1.getOrderPostingDate());

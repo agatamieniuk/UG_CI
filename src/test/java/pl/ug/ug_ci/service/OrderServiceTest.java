@@ -52,18 +52,28 @@ public class OrderServiceTest {
         );
     }
 
-    //Poniżej korzystam z informacji, iż Comparatory zwracaja liczbę (ujemna/dodatnia/zero) ujemna – obiekt mniejszy, dodatnia – obiekt wiekszy, zero – obiekt rowny:
+    //Poniżej korzystam z informacji, iż Comparatory zwracaja liczbę (ujemna/dodatnia/zero) ujemna – obiekt mniejszy, dodatnia – obiekt wiekszy (uwzględniając, iż zero oznacza obiekt rowny).
     @Test
     public void testSortByNameAsc() {
-        assertTrue(orderService.sortByNameAsc().get(0).getName().compareTo(orderService.sortByNameAsc().get(1).getName()) < 0);
-        assertTrue(orderService.sortByNameAsc().get(1).getName().compareTo(orderService.sortByNameAsc().get(2).getName()) < 0);
-        assertTrue(orderService.sortByNameAsc().get(0).getName().compareTo(orderService.sortByNameAsc().get(2).getName()) < 0);
+        assertTrue(orderService.sortByNameAsc().get(0).getName().compareTo(orderService.sortByNameAsc().get(1).getName()) <= 0);
+        assertTrue(orderService.sortByNameAsc().get(1).getName().compareTo(orderService.sortByNameAsc().get(2).getName()) <= 0);
+        assertTrue(orderService.sortByNameAsc().get(0).getName().compareTo(orderService.sortByNameAsc().get(2).getName()) <= 0);
     }
 
     @Test
     public void testSortByNameDesc() {
-        assertTrue(orderService.sortByNameDesc().get(0).getName().compareTo(orderService.sortByNameDesc().get(1).getName()) > 0);
-        assertTrue(orderService.sortByNameDesc().get(1).getName().compareTo(orderService.sortByNameDesc().get(2).getName()) > 0);
-        assertTrue(orderService.sortByNameDesc().get(0).getName().compareTo(orderService.sortByNameDesc().get(2).getName()) > 0);
+        assertTrue(orderService.sortByNameDesc().get(0).getName().compareTo(orderService.sortByNameDesc().get(1).getName()) >= 0);
+        assertTrue(orderService.sortByNameDesc().get(1).getName().compareTo(orderService.sortByNameDesc().get(2).getName()) >= 0);
+        assertTrue(orderService.sortByNameDesc().get(0).getName().compareTo(orderService.sortByNameDesc().get(2).getName()) >= 0);
+    }
+
+    @Test
+    public void testSortByDateAsc() {
+        System.out.println(orderService.sortByDateAsc().size());
+//        System.out.println(orderService.sortByDateAsc().get(0).getOrderPostingDate().compareTo(orderService.sortByDateAsc().get(3).getOrderPostingDate()));
+//        System.out.println(orderService.sortByDateAsc().get().getOrderPostingDate().compareTo(orderService.sortByDateAsc().get(1).getOrderPostingDate()));
+        assertTrue(orderService.sortByDateAsc().get(0).getOrderPostingDate().compareTo(orderService.sortByDateAsc().get(1).getOrderPostingDate()) <= 0);
+        assertTrue(orderService.sortByDateAsc().get(1).getOrderPostingDate().compareTo(orderService.sortByDateAsc().get(2).getOrderPostingDate()) <= 0);
+        assertTrue(orderService.sortByDateAsc().get(0).getOrderPostingDate().compareTo(orderService.sortByDateAsc().get(orderService.sortByDateAsc().size() - 1).getOrderPostingDate()) <= 0);
     }
 }

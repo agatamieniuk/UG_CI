@@ -3,12 +3,18 @@ package pl.ug.ug_ci.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.server.ResponseStatusException;
 import pl.ug.ug_ci.model.ConverterDto;
 import pl.ug.ug_ci.model.Order;
 import pl.ug.ug_ci.service.OrderService;
 import pl.ug.ug_ci.webclient.converter.ConverterClient;
+
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @AllArgsConstructor
@@ -33,46 +39,60 @@ public class OrderController {
 
     //Optymalizacja sortowania - po nazwie rosnąco:
     @GetMapping("sort-name")
-    public List<Order> sortByNameAs(){
+    public List<Order> sortByNameAs() {
         return orderService.sortByNameAsc();
     }
 
     //Optymalizacja sortowania  - po nazwie malejąco:
     @GetMapping("sort-name-desc")
-    public List<Order> sortByNameDesc(){
+    public List<Order> sortByNameDesc() {
         return orderService.sortByNameDesc();
     }
 
     //Optymalizacja sortowania  - po dacie od najnowszego:
     @GetMapping("sort-date")
-    public List<Order> sortByDateAsc(){
+    public List<Order> sortByDateAsc() {
         return orderService.sortByDateAsc();
     }
 
     //Optymalizacja sortowania  - po dacie od najstarszego:
     @GetMapping("sort-date-desc")
-    public List<Order> sortByDateDesc(){
+    public List<Order> sortByDateDesc() {
         return orderService.sortByDateDesc();
     }
 
     //Dodawanie rekordów przez żądanie HTTP:
     @PostMapping("save")
-    public String saveOrder(@RequestBody Order order){
-        orderService.saveOrder(order);
+    public String saveOrder(@RequestBody Order order) {
+//TODO: Czy dobrze?
+        try {
+            orderService.saveOrder(order);
+        } catch (HttpClientErrorException exception) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        } catch (HttpMessageNotReadableException exception) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST)
+        }
         return "Dodano...";
     }
 
     //Edycja rekordów przez żądanie HTTP:
     @PutMapping("update/{id}")
-    public String updateOrder(@PathVariable Integer id, @RequestBody Order order){
-        Order updatedOrder = orderService.findById(id);
-        updatedOrder.setName(order.getName());
-        updatedOrder.setOrderPostingDate(order.getOrderPostingDate());
-        updatedOrder.setPayInDollar(order.getPayInDollar());
-        ConverterDto converter = converterClient.getDateforConvertion(order.getOrderPostingDate());
-        order.setPayInPLN(converter.getExchangeRate() * order.getPayInDollar());
+    public String updateOrder(@PathVariable Integer id, @RequestBody Order order) {
+        try {
+            Order updatedOrder = orderService.findById(id);
+            updatedOrder.setName(order.getName());
+            updatedOrder.setOrderPostingDate(order.getOrderPostingDate());
+            updatedOrder.setPayInDollar(order.getPayInDollar());
+            ConverterDto converter = converterClient.getDateforConvertion(order.getOrderPostingDate());
+            order.setPayInPLN(converter.getExchangeRate() * order.getPayInDollar());
 
-        orderService.saveOrder(updatedOrder);
+            orderService.saveOrder(updatedOrder);
+//TODO: Czy dobrze?
+        } catch (NoSuchElementException exception) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+        } catch (HttpClientErrorException exception) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
+        }
         return "Edytowano...";
     }
 

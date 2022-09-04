@@ -1,17 +1,14 @@
 package pl.ug.ug_ci.service;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import pl.ug.ug_ci.model.Order;
-
 import java.time.LocalDate;
-
 import static org.assertj.core.api.Assertions.*;
-
 import java.util.Comparator;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -34,6 +31,7 @@ public class OrderServiceTest {
     }
 
     @Test
+    @DisplayName("Powinno zwrócić fałsz, gdy nazwa komputera nie brzmi 'komputer 1'")
     public void testFindBy() {
         List<Order> orderList = orderService.findBy("komputer 1");
         assertThat(orderList)
@@ -41,6 +39,8 @@ public class OrderServiceTest {
                 .hasSize(2)
                 .containsOnly(orderService.findAll().get(0), orderService.findAll().get(1));
     }
+
+//    Wersja druga:
 //    @Test
 //    public void testFindBy() {
 //        Order order = new Order(1, "komputer 1", LocalDate.of(2022, 01, 03), 345F, 1394.63F);
@@ -95,7 +95,8 @@ public class OrderServiceTest {
                 .isSortedAccordingTo((date1, date2) -> date2.getOrderPostingDate().compareTo(date1.getOrderPostingDate()));
     }
 
-//    //Poniżej korzystam z informacji, iż Comparatory zwracaja liczbę (ujemna/dodatnia/zero) ujemna – obiekt mniejszy, dodatnia – obiekt wiekszy (uwzględniając, iż zero oznacza obiekt rowny).
+//    Wersja druga:
+//    Poniżej korzystam z informacji, iż Comparatory zwracaja liczbę (ujemna/dodatnia/zero) ujemna – obiekt mniejszy, dodatnia – obiekt wiekszy (uwzględniając, iż zero oznacza obiekt rowny).
 //    @Test
 //    public void testSortByNameAsc() {
 ////        System.out.println(orderService.sortByNameAsc().get(0));//B komputer 2
@@ -136,6 +137,7 @@ public class OrderServiceTest {
 //    }
 
     @Test
+    @DisplayName("Powinno zwrócić fałsz, gdy zapisany obiekt nie jest równoważny ze wskazanym")
     public void testSaveOrder() {
         Order order = new Order();
         order.setName("komputer Agaty");
@@ -151,7 +153,6 @@ public class OrderServiceTest {
                 .hasToString("Order{id=7, name='komputer Agaty', orderPostingDate=2022-01-03, payInDollar=345.0, payInPLN=1394.63}");
     }
 
-
 //    @Test
 //    public void testSaveOrder() {
 //        Order order = new Order();
@@ -159,16 +160,16 @@ public class OrderServiceTest {
 //        order.setOrderPostingDate(LocalDate.of(2022, 01, 03));
 //        order.setPayInDollar(345F);
 //        Order savedOrder = orderService.saveOrder(order);
-//        orderService.findById(orderService.findAll().size()).getPayInPLN();
-//        System.out.println(savedOrder.getPayInPLN());
-//        System.out.println(orderService.findById(orderService.findAll().size()).getPayInPLN());
+//        Order addedOrderFindById = orderService.findById(orderService.findAll().size());
+//        System.out.println(savedOrder);
+//        System.out.println("added: " + addedOrderFindById);
 //
 //        assertAll("SaveOrder",
-//                () -> assertEquals(savedOrder.getName(), orderService.findById(orderService.findAll().size()).getName()),
-//                () -> assertEquals(savedOrder.getOrderPostingDate(), orderService.findById(orderService.findAll().size()).getOrderPostingDate()),
-//                () -> assertEquals(savedOrder.getPayInDollar(), orderService.findById(orderService.findAll().size()).getPayInDollar())
+//                () -> assertEquals(savedOrder.getName(), addedOrderFindById.getName()),
+//                () -> assertEquals(savedOrder.getOrderPostingDate(), addedOrderFindById.getOrderPostingDate()),
+//                () -> assertEquals(savedOrder.getPayInDollar(), addedOrderFindById.getPayInDollar()),
 ////              TODO: czemu zaokrągla do 4 miejsc
-////                () -> assertEquals(savedOrder.getPayInPLN().floatValue(), orderService.findById(orderService.findAll().size()).getPayInPLN())
+//                () -> assertEquals(savedOrder.getPayInPLN().floatValue(), addedOrderFindById.getPayInPLN())
 //        );
 //    }
 }

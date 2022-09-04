@@ -13,7 +13,6 @@ import pl.ug.ug_ci.model.ConverterDto;
 import pl.ug.ug_ci.model.Order;
 import pl.ug.ug_ci.service.OrderService;
 import pl.ug.ug_ci.webclient.converter.ConverterClient;
-
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -28,6 +27,7 @@ public class OrderController {
     ConverterClient converterClient;
 
     @GetMapping
+//TODO: całość ResponseEntity -> do sprawdzenia
     public ResponseEntity<List<Order>> getAllOrders() {
         orderService.findAll();
         if (orderService.findAll().isEmpty()) {
@@ -89,7 +89,7 @@ public class OrderController {
     //Dodawanie rekordów przez żądanie HTTP:
     @PostMapping("save")
     public String saveOrder(@RequestBody Order order) {
-//TODO: Czy dobrze?
+//TODO: do sprawdzenia
         try {
             orderService.saveOrder(order);
         } catch (HttpClientErrorException exception) {
@@ -112,7 +112,7 @@ public class OrderController {
             order.setPayInPLN(converter.getExchangeRate() * order.getPayInDollar());
 
             orderService.saveOrder(updatedOrder);
-//TODO: Czy dobrze?
+//TODO: do sprawdzenia
         } catch (NoSuchElementException exception) {
             throw new ResponseStatusException(HttpStatus.FORBIDDEN);
         } catch (HttpClientErrorException exception) {

@@ -5,17 +5,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import pl.ug.ug_ci.model.Order;
-import pl.ug.ug_ci.model.Orders;
-
 import java.time.LocalDate;
-
 import static org.assertj.core.api.Assertions.*;
-
+import static org.junit.jupiter.api.Assertions.*;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class OrderServiceTest {
@@ -42,6 +38,7 @@ public class OrderServiceTest {
         List<Order> orderList = orderService.findBy("komputer 1");
         assertThat(orderList)
                 .isNotNull()
+                .doesNotContainNull()
                 .hasSize(2)
                 .containsOnly(orderService.findAll().get(0), orderService.findAll().get(1));
     }
@@ -79,7 +76,10 @@ public class OrderServiceTest {
         List<Order> orderList = orderService.sortByNameAsc();
         assertThat(orderList)
                 .isNotNull()
-                .isSortedAccordingTo(Comparator.comparing(name -> name.getName().toLowerCase()));
+                .isInstanceOf(ArrayList.class)
+                .doesNotContainNull()
+                .isSortedAccordingTo(Comparator.comparing(name -> name.getName().toLowerCase()))
+                .size().isEqualTo(orderService.findAll().size());
     }
 
     @Test
@@ -87,7 +87,10 @@ public class OrderServiceTest {
         List<Order> orderList = orderService.sortByNameDesc();
         assertThat(orderList)
                 .isNotNull()
-                .isSortedAccordingTo((name1, name2) -> name2.getName().compareToIgnoreCase(name1.getName()));
+                .isInstanceOf(ArrayList.class)
+                .doesNotContainNull()
+                .isSortedAccordingTo((name1, name2) -> name2.getName().compareToIgnoreCase(name1.getName()))
+                .size().isEqualTo(orderService.findAll().size());
     }
 
     @Test
@@ -95,7 +98,10 @@ public class OrderServiceTest {
         List<Order> orderList = orderService.sortByDateAsc();
         assertThat(orderList)
                 .isNotNull()
-                .isSortedAccordingTo(Comparator.comparing(Order::getOrderPostingDate));
+                .isInstanceOf(ArrayList.class)
+                .doesNotContainNull()
+                .isSortedAccordingTo(Comparator.comparing(Order::getOrderPostingDate))
+                .size().isEqualTo(orderService.findAll().size());
     }
 
     @Test
@@ -103,7 +109,10 @@ public class OrderServiceTest {
         List<Order> orderList = orderService.sortByDateDesc();
         assertThat(orderList)
                 .isNotNull()
-                .isSortedAccordingTo((date1, date2) -> date2.getOrderPostingDate().compareTo(date1.getOrderPostingDate()));
+                .isInstanceOf(ArrayList.class)
+                .doesNotContainNull()
+                .isSortedAccordingTo((date1, date2) -> date2.getOrderPostingDate().compareTo(date1.getOrderPostingDate()))
+                .size().isEqualTo(orderService.findAll().size());
     }
 
 //    Wersja druga:

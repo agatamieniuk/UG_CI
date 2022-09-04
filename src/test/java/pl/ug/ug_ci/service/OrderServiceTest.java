@@ -137,7 +137,18 @@ public class OrderServiceTest {
 
     @Test
     public void testSaveOrder() {
+        Order order = new Order();
+        order.setName("komputer Agaty");
+        order.setOrderPostingDate(LocalDate.of(2022, 01, 03));
+        order.setPayInDollar(345F);
+        orderService.saveOrder(order);
+        Order addedOrder = orderService.findById(orderService.findAll().size());
 
+        assertThat(addedOrder)
+                .isNotNull()
+                .isInstanceOf(Order.class)
+                .hasNoNullFieldsOrProperties()
+                .hasToString("Order{id=7, name='komputer Agaty', orderPostingDate=2022-01-03, payInDollar=345.0, payInPLN=1394.63}");
     }
 
 

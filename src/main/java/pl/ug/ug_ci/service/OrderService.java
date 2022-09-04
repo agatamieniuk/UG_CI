@@ -71,9 +71,6 @@ public class OrderService {
     }
 
     public List<Order> findByName(String name) {
-//        Wyszukiwanie pozostawiłam na streamach, gdyz z repozytorium wyszukiwało po pełnej nazwie, a w wymaganiach jest fragment. W przypadku użycia repozytorium:
-//        public List<Order> findByName(String name) {
-//        return orderRepository.findByName(name);}
         return orderRepository.findAll().stream()
                 .filter(names -> names.getName().toLowerCase()
                         .contains(name.toLowerCase())).collect(Collectors.toList());
@@ -83,8 +80,6 @@ public class OrderService {
         return orderRepository.findAll().stream()
                 .filter(d -> d.getOrderPostingDate().toString().contains(orderPostingDate))
                 .collect(Collectors.toList());
-//        public List<Order> findByAccountDay(LocalDate orderPostingDate) {
-//        return orderRepository.findByOrderPostingDate(orderPostingDate);
     }
 
     public List<Order> sortByNameAlphabetically() {

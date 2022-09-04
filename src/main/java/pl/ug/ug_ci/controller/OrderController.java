@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.HttpClientErrorException;
@@ -27,38 +28,62 @@ public class OrderController {
     ConverterClient converterClient;
 
     @GetMapping
-    public List<Order> getAllOrders() {
-        return orderService.findAll();
+    public ResponseEntity<List<Order>> getAllOrders() {
+        orderService.findAll();
+        if (orderService.findAll().isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(orderService.findAll(), HttpStatus.OK);
     }
 
     //Optymalizacja wyszukiwania/sortowania:
     @GetMapping("search")
-    public List<Order> findBy(@Param("keyword") String keyword) {
-        return orderService.findBy(keyword);
+    public ResponseEntity<List<Order>> findBy(@Param("keyword") String keyword) {
+        orderService.findBy(keyword);
+        if (orderService.findBy(keyword).isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(orderService.findBy(keyword), HttpStatus.OK);
     }
 
     //Optymalizacja sortowania - po nazwie rosnąco:
     @GetMapping("sort-name")
-    public List<Order> sortByNameAs() {
-        return orderService.sortByNameAsc();
+    public ResponseEntity<List<Order>> sortByNameAs() {
+        orderService.sortByNameAsc();
+        if (orderService.sortByNameAsc().isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(orderService.sortByNameAsc(), HttpStatus.OK);
     }
 
     //Optymalizacja sortowania  - po nazwie malejąco:
     @GetMapping("sort-name-desc")
-    public List<Order> sortByNameDesc() {
-        return orderService.sortByNameDesc();
+    public ResponseEntity<List<Order>> sortByNameDesc() {
+        orderService.sortByNameDesc();
+        if (orderService.sortByNameDesc().isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(orderService.sortByNameDesc(), HttpStatus.OK);
     }
 
     //Optymalizacja sortowania  - po dacie od najnowszego:
     @GetMapping("sort-date")
-    public List<Order> sortByDateAsc() {
-        return orderService.sortByDateAsc();
+    public ResponseEntity<List<Order>> sortByDateAsc() {
+        orderService.sortByDateAsc();
+        if(orderService.sortByDateAsc().isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(orderService.sortByDateAsc(), HttpStatus.OK);
     }
 
     //Optymalizacja sortowania  - po dacie od najstarszego:
     @GetMapping("sort-date-desc")
-    public List<Order> sortByDateDesc() {
-        return orderService.sortByDateDesc();
+    public ResponseEntity<List<Order>> sortByDateDesc() {
+        orderService.sortByDateDesc();
+        if(orderService.sortByDateDesc().isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(orderService.sortByDateDesc(), HttpStatus.OK);
     }
 
     //Dodawanie rekordów przez żądanie HTTP:
@@ -70,7 +95,7 @@ public class OrderController {
         } catch (HttpClientErrorException exception) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         } catch (HttpMessageNotReadableException exception) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST)
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
         }
         return "Dodano...";
     }

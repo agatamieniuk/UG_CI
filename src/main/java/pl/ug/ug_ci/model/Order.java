@@ -7,6 +7,7 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDate;
+import java.util.Objects;
 
 @Getter
 @NoArgsConstructor
@@ -56,5 +57,18 @@ public class Order {
                 ", payInDollar=" + payInDollar +
                 ", payInPLN=" + payInPLN +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Order order = (Order) o;
+        return Objects.equals(id, order.id) && Objects.equals(name, order.name) && Objects.equals(orderPostingDate, order.orderPostingDate) && Objects.equals(payInDollar, order.payInDollar) && Objects.equals(payInPLN, order.payInPLN);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, orderPostingDate, payInDollar, payInPLN);
     }
 }

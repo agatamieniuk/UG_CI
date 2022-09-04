@@ -70,46 +70,46 @@ public class OrderService {
         return orderRepository.findById(id).get();
     }
 
-//    public List<Order> findByName(String name) {
-////        Wyszukiwanie pozostawiłam na streamach, gdyz z repozytorium wyszukiwało po pełnej nazwie, a w wymaganiach jest fragment. W przypadku użycia repozytorium:
-////        public List<Order> findByName(String name) {
-////        return orderRepository.findByName(name);}
-//        return orderRepository.findAll().stream()
-//                .filter(names -> names.getName().toLowerCase()
-//                        .contains(name.toLowerCase())).collect(Collectors.toList());
-//    }
-//
-//    public List<Order> findByAccountDay(String orderPostingDate) {
-//        return orderRepository.findAll().stream()
-//                .filter(d -> d.getOrderPostingDate().toString().contains(orderPostingDate))
-//                .collect(Collectors.toList());
-////        public List<Order> findByAccountDay(LocalDate orderPostingDate) {
-////        return orderRepository.findByOrderPostingDate(orderPostingDate);
-//    }
-//
-//    public List<Order> sortByNameAlphabetically() {
-//        return orderRepository.findAll().stream()
-//                .sorted(Comparator.comparing(name -> name.getName().toLowerCase()))
-//                .collect(Collectors.toList());
-//    }
-//
-//    public List<Order> sortByNameReverse() {
-//        return orderRepository.findAll().stream()
-//                .sorted((name1, name2) -> name2.getName().compareToIgnoreCase(name1.getName()))
-//                .collect(Collectors.toList());
-//    }
-//
-//    public List<Order> sortByNewestDate() {
-//        return orderRepository.findAll().stream()
-//                .sorted((date1, date2) -> date2.getOrderPostingDate().compareTo(date1.getOrderPostingDate()))
-//                .collect(Collectors.toList());
-//    }
-//
-//    public List<Order> sortByLatestDate() {
-//        return orderRepository.findAll().stream()
-//                .sorted(Comparator.comparing(Order::getOrderPostingDate))
-//                .collect(Collectors.toList());
-//    }
+    public List<Order> findByName(String name) {
+//        Wyszukiwanie pozostawiłam na streamach, gdyz z repozytorium wyszukiwało po pełnej nazwie, a w wymaganiach jest fragment. W przypadku użycia repozytorium:
+//        public List<Order> findByName(String name) {
+//        return orderRepository.findByName(name);}
+        return orderRepository.findAll().stream()
+                .filter(names -> names.getName().toLowerCase()
+                        .contains(name.toLowerCase())).collect(Collectors.toList());
+    }
+
+    public List<Order> findByAccountDay(String orderPostingDate) {
+        return orderRepository.findAll().stream()
+                .filter(d -> d.getOrderPostingDate().toString().contains(orderPostingDate))
+                .collect(Collectors.toList());
+//        public List<Order> findByAccountDay(LocalDate orderPostingDate) {
+//        return orderRepository.findByOrderPostingDate(orderPostingDate);
+    }
+
+    public List<Order> sortByNameAlphabetically() {
+        return orderRepository.findAll().stream()
+                .sorted(Comparator.comparing(name -> name.getName().toLowerCase()))
+                .collect(Collectors.toList());
+    }
+
+    public List<Order> sortByNameReverse() {
+        return orderRepository.findAll().stream()
+                .sorted((name1, name2) -> name2.getName().compareToIgnoreCase(name1.getName()))
+                .collect(Collectors.toList());
+    }
+
+    public List<Order> sortByNewestDate() {
+        return orderRepository.findAll().stream()
+                .sorted((date1, date2) -> date2.getOrderPostingDate().compareTo(date1.getOrderPostingDate()))
+                .collect(Collectors.toList());
+    }
+
+    public List<Order> sortByLatestDate() {
+        return orderRepository.findAll().stream()
+                .sorted(Comparator.comparing(Order::getOrderPostingDate))
+                .collect(Collectors.toList());
+    }
 
     public static void convertOrderToXML(Orders orders) throws JAXBException {
         JAXBContext context = JAXBContext.newInstance(Orders.class);

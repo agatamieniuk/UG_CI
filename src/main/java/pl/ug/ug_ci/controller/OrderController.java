@@ -8,13 +8,13 @@ import pl.ug.ug_ci.model.ConverterDto;
 import pl.ug.ug_ci.model.Order;
 import pl.ug.ug_ci.service.OrderService;
 import pl.ug.ug_ci.webclient.converter.ConverterClient;
-
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
 public class OrderController {
 
+    @Autowired
     OrderService orderService;
 
     @Autowired
@@ -80,7 +80,6 @@ public class OrderController {
     public List<Order> findByName(@PathVariable String name) {
         return orderService.findByName(name);
     }
-
 
     @GetMapping("by-date/{date}")
     public List<Order> findByAccountDay(@PathVariable String date) {

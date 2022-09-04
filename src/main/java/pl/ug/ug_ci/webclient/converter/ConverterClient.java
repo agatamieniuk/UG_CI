@@ -6,7 +6,6 @@ import pl.ug.ug_ci.model.ConverterDto;
 import pl.ug.ug_ci.webclient.converter.dto.NBPConverterDto;
 import java.time.LocalDate;
 
-
 @Component
 public class ConverterClient {
 

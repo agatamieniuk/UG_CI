@@ -66,7 +66,7 @@ public class OrderService {
     }
 
     public Order findById(Integer id){
-        return orderRepository.findById(id).get();
+        return orderRepository.getReferenceById(id);
     }
 
     public List<Order> findByName(String name) {

@@ -4,17 +4,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.server.ResponseStatusException;
 import pl.ug.ug_ci.model.ConverterDto;
 import pl.ug.ug_ci.model.Order;
 import pl.ug.ug_ci.service.OrderService;
 import pl.ug.ug_ci.webclient.converter.ConverterClient;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 @RestController
 @AllArgsConstructor
@@ -27,97 +22,59 @@ public class OrderController {
     ConverterClient converterClient;
 
     @GetMapping
-//TODO: całość ResponseEntity -> do sprawdzenia
-    public ResponseEntity<List<Order>> getAllOrders() {
-        orderService.findAll();
-        if (orderService.findAll().isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(orderService.findAll(), HttpStatus.OK);
+    public List<Order> getAllOrders() {
+        return orderService.findAll();
     }
 
     //Optymalizacja wyszukiwania/sortowania:
     @GetMapping("search")
-    public ResponseEntity<List<Order>> findBy(@Param("keyword") String keyword) {
-        orderService.findBy(keyword);
-        if (orderService.findBy(keyword).isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(orderService.findBy(keyword), HttpStatus.OK);
+    public List<Order> findBy(@Param("keyword") String keyword) {
+        return orderService.findBy(keyword);
     }
 
     //Optymalizacja sortowania - po nazwie rosnąco:
     @GetMapping("sort-name")
-    public ResponseEntity<List<Order>> sortByNameAs() {
-        orderService.sortByNameAsc();
-        if (orderService.sortByNameAsc().isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(orderService.sortByNameAsc(), HttpStatus.OK);
+    public List<Order> sortByNameAs(){
+        return orderService.sortByNameAsc();
     }
 
     //Optymalizacja sortowania  - po nazwie malejąco:
     @GetMapping("sort-name-desc")
-    public ResponseEntity<List<Order>> sortByNameDesc() {
-        orderService.sortByNameDesc();
-        if (orderService.sortByNameDesc().isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(orderService.sortByNameDesc(), HttpStatus.OK);
+    public List<Order> sortByNameDesc(){
+        return orderService.sortByNameDesc();
     }
 
     //Optymalizacja sortowania  - po dacie od najnowszego:
     @GetMapping("sort-date")
-    public ResponseEntity<List<Order>> sortByDateAsc() {
-        orderService.sortByDateAsc();
-        if(orderService.sortByDateAsc().isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(orderService.sortByDateAsc(), HttpStatus.OK);
+    public List<Order> sortByDateAsc(){
+        return orderService.sortByDateAsc();
     }
 
     //Optymalizacja sortowania  - po dacie od najstarszego:
     @GetMapping("sort-date-desc")
-    public ResponseEntity<List<Order>> sortByDateDesc() {
-        orderService.sortByDateDesc();
-        if(orderService.sortByDateDesc().isEmpty()){
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }
-        return new ResponseEntity<>(orderService.sortByDateDesc(), HttpStatus.OK);
+    public List<Order> sortByDateDesc(){
+        return orderService.sortByDateDesc();
     }
 
     //Dodawanie rekordów przez żądanie HTTP:
     @PostMapping("save")
-    public String saveOrder(@RequestBody Order order) {
-//TODO: do sprawdzenia
-        try {
-            orderService.saveOrder(order);
-        } catch (HttpClientErrorException exception) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        } catch (HttpMessageNotReadableException exception) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
-        }
+    @ResponseStatus(HttpStatus.CREATED)
+    public String saveOrder(@RequestBody Order order){
+        orderService.saveOrder(order);
         return "Dodano...";
     }
 
     //Edycja rekordów przez żądanie HTTP:
     @PutMapping("update/{id}")
-    public String updateOrder(@PathVariable Integer id, @RequestBody Order order) {
-        try {
-            Order updatedOrder = orderService.findById(id);
-            updatedOrder.setName(order.getName());
-            updatedOrder.setOrderPostingDate(order.getOrderPostingDate());
-            updatedOrder.setPayInDollar(order.getPayInDollar());
-            ConverterDto converter = converterClient.getDateforConvertion(order.getOrderPostingDate());
-            order.setPayInPLN(converter.getExchangeRate() * order.getPayInDollar());
+    public String updateOrder(@PathVariable Integer id, @RequestBody Order order){
+        Order updatedOrder = orderService.findById(id);
+        updatedOrder.setName(order.getName());
+        updatedOrder.setOrderPostingDate(order.getOrderPostingDate());
+        updatedOrder.setPayInDollar(order.getPayInDollar());
+        ConverterDto converter = converterClient.getDateforConvertion(order.getOrderPostingDate());
+        order.setPayInPLN(converter.getExchangeRate() * order.getPayInDollar());
 
-            orderService.saveOrder(updatedOrder);
-//TODO: do sprawdzenia
-        } catch (NoSuchElementException exception) {
-            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
-        } catch (HttpClientErrorException exception) {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND);
-        }
+        orderService.saveOrder(updatedOrder);
         return "Edytowano...";
     }
 

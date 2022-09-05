@@ -21,8 +21,8 @@ public class OrderServiceTest {
 
     @Test
     public void testFindAll() {
-        Order order = new Order(1, "komputer 1", LocalDate.of(2022, 01, 03), 345F, 1394.63F);
-        Order order2 = new Order(2, "C komputer 1", LocalDate.of(2022, 01, 10), 345F, 1382.21F);
+        Order order = new Order(1, "komputer 1", LocalDate.of(2022, 01, 03), 345F, 1394.6279F);
+        Order order2 = new Order(2, "C komputer 1", LocalDate.of(2022, 01, 10), 345F, 1382.208F);
 
         assertAll("Find All",
                 () -> assertNotNull(orderService.findAll()),
@@ -159,26 +159,6 @@ public class OrderServiceTest {
                 .isNotNull()
                 .isInstanceOf(Order.class)
                 .hasNoNullFieldsOrProperties()
-                .hasToString("Order{id=7, name='komputer Agaty', orderPostingDate=2022-01-03, payInDollar=345.0, payInPLN=1394.63}");
+                .hasToString("Order{id=7, name='komputer Agaty', orderPostingDate=2022-01-03, payInDollar=345.0, payInPLN=1394.6279}");
     }
-
-//    @Test
-//    public void testSaveOrder() {
-//        Order order = new Order();
-//        order.setName("komputer Agaty");
-//        order.setOrderPostingDate(LocalDate.of(2022, 01, 03));
-//        order.setPayInDollar(345F);
-//        Order savedOrder = orderService.saveOrder(order);
-//        Order addedOrderFindById = orderService.findById(orderService.findAll().size());
-//        System.out.println(savedOrder);
-//        System.out.println("added: " + addedOrderFindById);
-//
-//        assertAll("SaveOrder",
-//                () -> assertEquals(savedOrder.getName(), addedOrderFindById.getName()),
-//                () -> assertEquals(savedOrder.getOrderPostingDate(), addedOrderFindById.getOrderPostingDate()),
-//                () -> assertEquals(savedOrder.getPayInDollar(), addedOrderFindById.getPayInDollar()),
-////              TODO: czemu zaokrągla do 4 miejsc
-//                () -> assertEquals(savedOrder.getPayInPLN().floatValue(), addedOrderFindById.getPayInPLN())
-//        );
-//    }
 }

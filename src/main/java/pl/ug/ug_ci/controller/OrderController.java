@@ -3,6 +3,7 @@ package pl.ug.ug_ci.controller;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import pl.ug.ug_ci.model.ConverterDto;
 import pl.ug.ug_ci.model.Order;
@@ -57,6 +58,7 @@ public class OrderController {
 
     //Dodawanie rekordów przez żądanie HTTP:
     @PostMapping("save")
+    @ResponseStatus(HttpStatus.CREATED)
     public String saveOrder(@RequestBody Order order){
         orderService.saveOrder(order);
         return "Dodano...";

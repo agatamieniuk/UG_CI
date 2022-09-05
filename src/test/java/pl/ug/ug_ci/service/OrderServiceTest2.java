@@ -38,18 +38,18 @@ public class OrderServiceTest2 {
         Mockito.verify(orderRepository, Mockito.times(1)).findAllBy("komputer 1");
     }
 
-//    @Test
-//    @DisplayName("Powinno zwrócić fałsz, gdy zapisany obiekt nie jest równoważny ze wskazanym")
-//    public void testSaveOrder() {
-//        Order order = new Order();
-//        ConverterDto converterDto = new ConverterDto(LocalDate.of(2022, 01, 03), 3.2F);
-//
-//        order.setName("komputer Agaty");
-//        order.setOrderPostingDate(LocalDate.of(2022, 01, 03));
-//        order.setPayInDollar(345F);
-//        orderService.saveOrder(order);
-//
-//        Mockito.when(converterClient.getDateforConvertion(order.getOrderPostingDate())).thenReturn(converterDto);
-////        Mockito.verify(converterClient, Mockito.times(1)).getDateforConvertion(LocalDate.of(2022, 01, 03));
-//    }
+    @Test
+    @DisplayName("Powinno zwrócić fałsz, gdy zapisany obiekt nie jest równoważny ze wskazanym")
+    public void testSaveOrder() {
+        Order order = new Order();
+        ConverterDto converterDto = new ConverterDto(LocalDate.of(2022, 01, 03), 3.2F);
+
+        order.setName("komputer Agaty");
+        order.setOrderPostingDate(LocalDate.of(2022, 01, 03));
+        order.setPayInDollar(345F);
+        orderService.saveOrder(order);
+
+        Mockito.when(converterClient.getDateforConvertion(order.getOrderPostingDate())).thenReturn(converterDto);
+//        Mockito.verify(converterClient, Mockito.times(1)).getDateforConvertion(LocalDate.of(2022, 01, 03));
+    }
 }

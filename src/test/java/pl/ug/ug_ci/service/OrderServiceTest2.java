@@ -47,9 +47,10 @@ public class OrderServiceTest2 {
         order.setName("komputer Agaty");
         order.setOrderPostingDate(LocalDate.of(2022, 01, 03));
         order.setPayInDollar(345F);
-        orderService.saveOrder(order);
 
-        Mockito.when(converterClient.getDateforConvertion(order.getOrderPostingDate())).thenReturn(converterDto);
-//        Mockito.verify(converterClient, Mockito.times(1)).getDateforConvertion(LocalDate.of(2022, 01, 03));
+        Mockito.when(converterClient.getDateforConvertion(LocalDate.of(2022, 01, 03))).thenReturn(converterDto);
+        orderService.saveOrder(order);
+        Mockito.verify(converterClient, Mockito.times(1)).getDateforConvertion(LocalDate.of(2022, 01, 03));
+        Mockito.verify(orderRepository, Mockito.times(1)).save(order);
     }
 }
